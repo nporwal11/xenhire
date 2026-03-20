@@ -1,3 +1,23 @@
+
+$jid = isset($_GET['jid']) ? absint($_GET['jid']) : 0;
+
+if (
+    !isset($_GET['_wpnonce']) ||
+    !wp_verify_nonce($_GET['_wpnonce'], 'xenhire_view')
+) {
+    wp_die('Invalid request');
+}
+
+if (!is_user_logged_in()) {
+    wp_die('Login required');
+}
+
+$post = get_post($jid);
+
+if (!$post || $post->post_author != get_current_user_id()) {
+    wp_die('Unauthorized access');
+}
+
 <?php
 if (!defined('ABSPATH')) exit;
 
@@ -168,7 +188,11 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
                 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 wp_localize_script('xenhire-thanks', 'xenhireThanksData', [
                     // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-                    'appId' => isset(sanitize_text_field($_GET['jid'])) ? intval(sanitize_text_field($_GET['jid'])) : 0
+                    'appId' => isset(sanitize_text_field(isset($_GET['jid']) ? absint($_GET['jid']) : 0;
+if (!isset($_GET['_wpnonce']) || !wp_verify_nonce($_GET['_wpnonce'], 'xenhire_view')) { wp_die('Invalid request'); }
+$jid)) ? intval(sanitize_text_field(isset($_GET['jid']) ? absint($_GET['jid']) : 0;
+if (!isset($_GET['_wpnonce']) || !wp_verify_nonce($_GET['_wpnonce'], 'xenhire_view')) { wp_die('Invalid request'); }
+$jid)) : 0
                 ]);
             }
 
@@ -178,7 +202,11 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
                 wp_localize_script('xenhire-interview', 'xenhireInterviewData', [
                     'jobId' => get_query_var('job_id'),
                     // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-                    'appId' => isset(sanitize_text_field($_GET['jid'])) ? intval(sanitize_text_field($_GET['jid'])) : 0,
+                    'appId' => isset(sanitize_text_field(isset($_GET['jid']) ? absint($_GET['jid']) : 0;
+if (!isset($_GET['_wpnonce']) || !wp_verify_nonce($_GET['_wpnonce'], 'xenhire_view')) { wp_die('Invalid request'); }
+$jid)) ? intval(sanitize_text_field(isset($_GET['jid']) ? absint($_GET['jid']) : 0;
+if (!isset($_GET['_wpnonce']) || !wp_verify_nonce($_GET['_wpnonce'], 'xenhire_view')) { wp_die('Invalid request'); }
+$jid)) : 0,
                     'thanksUrl' => home_url('/interview-complete/')
                 ]);
             }
@@ -836,18 +864,18 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
         }
 
         // Get all parameters including new ones
-        $city        = isset(sanitize_text_field($_POST['City'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['City']))) : '';
-        $job_title   = isset(sanitize_text_field($_POST['JobTitle'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['JobTitle']))) : '';
+        $city        = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['City'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['City']))))) : '';
+        $job_title   = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['JobTitle'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['JobTitle']))))) : '';
         // Check cookie for candidate_id if not in POST
         $candidate_id_cookie = isset($_COOKIE['xenhire_candidate_id']) ? intval($_COOKIE['xenhire_candidate_id']) : 0;
-        $candidate_id = isset(sanitize_text_field($_POST['CandidateID'])) ? intval(sanitize_text_field($_POST['CandidateID'])) : $candidate_id_cookie;
+        $candidate_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['CandidateID'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['CandidateID'])))) : $candidate_id_cookie;
         
         // Default to a guest ID or 0 if strictly needed, but 0 is usually fine for "Guest"
         if (!$candidate_id) $candidate_id = 0; 
         
-        $offset      = isset(sanitize_text_field($_POST['Offset'])) ? intval(sanitize_text_field($_POST['Offset'])) : -330;
-        $page_no     = isset(sanitize_text_field($_POST['PageNo'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['PageNo']))) : '1';
-        $page_size   = isset(sanitize_text_field($_POST['PageSize'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['PageSize']))) : '9';
+        $offset      = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Offset'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Offset'])))) : -330;
+        $page_no     = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['PageNo'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['PageNo']))))) : '1';
+        $page_size   = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['PageSize'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['PageSize']))))) : '9';
 
         // Call List_Requirement using public_call (APIKey auth, no login required)
         // The APIKey is automatically added as the first parameter by public_call method
@@ -989,7 +1017,7 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
     public function ajax_candidate_send_otp() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $email = isset(sanitize_text_field($_POST['email'])) ? sanitize_email(wp_unslash(sanitize_text_field($_POST['email']))) : '';
+        $email = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email'])))) ? sanitize_email(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email']))))) : '';
         $api_key = XenHire_Auth::get_api_key();
 
         // Fallback to hardcoded key if option is missing (for immediate fix)
@@ -1055,8 +1083,8 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
     public function ajax_candidate_verify_otp() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $email = isset(sanitize_text_field($_POST['email'])) ? sanitize_email(wp_unslash(sanitize_text_field($_POST['email']))) : '';
-        $otp = isset(sanitize_text_field($_POST['otp'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['otp']))) : '';
+        $email = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email'])))) ? sanitize_email(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email']))))) : '';
+        $otp = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['otp'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['otp']))))) : '';
         $api_key = XenHire_Auth::get_api_key();
 
         // Fallback to hardcoded key if option is missing
@@ -1134,7 +1162,7 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
     public function ajax_public_get_job_details() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $job_id = isset(sanitize_text_field($_POST['job_id'])) ? intval(sanitize_text_field($_POST['job_id'])) : 0;
+        $job_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) : 0;
         
         if ($job_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid Job ID'));
@@ -1237,10 +1265,10 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
     public function ajax_public_submit_application() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $first_name = isset(sanitize_text_field($_POST['first_name'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['first_name']))) : '';
-        $last_name = isset(sanitize_text_field($_POST['last_name'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['last_name']))) : '';
-        $email = isset(sanitize_text_field($_POST['email'])) ? sanitize_email(wp_unslash(sanitize_text_field($_POST['email']))) : '';
-        $job_id = isset(sanitize_text_field($_POST['job_id'])) ? intval(sanitize_text_field($_POST['job_id'])) : 0;
+        $first_name = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['first_name'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['first_name']))))) : '';
+        $last_name = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['last_name'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['last_name']))))) : '';
+        $email = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email'])))) ? sanitize_email(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email']))))) : '';
+        $job_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) : 0;
         
         if (empty($first_name) || empty($last_name) || empty($email)) {
             wp_send_json_error(['message' => 'Required fields missing']);
@@ -1267,9 +1295,9 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
                 $resume_url = wp_get_attachment_url($resume_id);
 
             }
-        } elseif (!empty(sanitize_text_field($_POST['resume_file']))) {
+        } elseif (!empty(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['resume_file']))))) {
              // Use the path from parsing if no new file uploaded
-             $resume_url = sanitize_text_field(wp_unslash(sanitize_text_field($_POST['resume_file'])));
+             $resume_url = sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['resume_file'])))));
         }
 
         if (!empty($_FILES['photo']['name'])) {
@@ -1285,38 +1313,38 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
         $candidate_id = isset($_COOKIE['xenhire_candidate_id']) ? intval($_COOKIE['xenhire_candidate_id']) : 0; 
         
         // Map Gender
-        $gender_val = isset(sanitize_text_field($_POST['gender'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['gender']))) : '';
+        $gender_val = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['gender'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['gender']))))) : '';
         $gender_id = '-1'; // Default to -1 (per curl command) instead of 0
         if (strtolower($gender_val) == 'male') $gender_id = '1';
         if (strtolower($gender_val) == 'female') $gender_id = '2';
 
-        $salary = isset(sanitize_text_field($_POST['salary'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['salary']))) : '';
+        $salary = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['salary'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['salary']))))) : '';
         if ($salary === '' || $salary < 0) $salary = '0';
 
         $args = [
             ['Key' => 'FirstName', 'Value' => $first_name],
             ['Key' => 'LastName', 'Value' => $last_name],
             ['Key' => 'Email', 'Value' => $email],
-            ['Key' => 'Mobile', 'Value' => isset(sanitize_text_field($_POST['mobile'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['mobile']))) : ''],
-            ['Key' => 'AltMobile', 'Value' => isset(sanitize_text_field($_POST['alt_mobile'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['alt_mobile']))) : ''],
-            ['Key' => 'LinkedInURL', 'Value' => isset(sanitize_text_field($_POST['linkedin'])) ? esc_url_raw(wp_unslash(sanitize_text_field($_POST['linkedin']))) : ''],
+            ['Key' => 'Mobile', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['mobile'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['mobile']))))) : ''],
+            ['Key' => 'AltMobile', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['alt_mobile'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['alt_mobile']))))) : ''],
+            ['Key' => 'LinkedInURL', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['linkedin'])))) ? esc_url_raw(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['linkedin']))))) : ''],
             ['Key' => 'GenderID', 'Value' => $gender_id],
             ['Key' => 'CurrentSalary', 'Value' => $salary],
-            ['Key' => 'CurrentCity', 'Value' => isset(sanitize_text_field($_POST['city'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['city']))) : ''],
-            ['Key' => 'PreferredCity', 'Value' => isset(sanitize_text_field($_POST['pref_city'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['pref_city']))) : ''],
+            ['Key' => 'CurrentCity', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['city'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['city']))))) : ''],
+            ['Key' => 'PreferredCity', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['pref_city'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['pref_city']))))) : ''],
             ['Key' => 'ResumeFILE', 'Value' => $resume_url], 
             ['Key' => 'PhotoIMG', 'Value' => $photo_url],
-            ['Key' => 'Keywords', 'Value' => isset(sanitize_text_field($_POST['keywords'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['keywords']))) : ''],
-            ['Key' => 'Industry', 'Value' => isset(sanitize_text_field($_POST['industry'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['industry']))) : ''],
+            ['Key' => 'Keywords', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['keywords'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['keywords']))))) : ''],
+            ['Key' => 'Industry', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['industry'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['industry']))))) : ''],
             ['Key' => 'RequirementID', 'Value' => $job_id],
-            ['Key' => 'DOB', 'Value' => isset(sanitize_text_field($_POST['dob'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['dob']))) : ''],
+            ['Key' => 'DOB', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['dob'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['dob']))))) : ''],
             ['Key' => 'CandidateID', 'Value' => $candidate_id],
             ['Key' => 'OTPCode', 'Value' => isset($_COOKIE['xenhire_candidate_otp']) ? sanitize_text_field(wp_unslash($_COOKIE['xenhire_candidate_otp'])) : '']
         ];
 
-        if (!empty(sanitize_text_field($_POST['employment']))) {
+        if (!empty(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['employment']))))) {
              // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- JSON string decoded and values sanitized later
-             $emp_json = wp_unslash(sanitize_text_field($_POST['employment']));
+             $emp_json = wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['employment']))));
              $emp_arr = json_decode($emp_json, true);
              if (is_array($emp_arr)) {
                  foreach ($emp_arr as $key => $val) {
@@ -1383,9 +1411,9 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
              }
         }
 
-        if (!empty(sanitize_text_field($_POST['education']))) {
+        if (!empty(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['education']))))) {
              // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- JSON string decoded and values sanitized later
-             $edu_json = wp_unslash(sanitize_text_field($_POST['education']));
+             $edu_json = wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['education']))));
              $edu_arr = json_decode($edu_json, true);
              if (is_array($edu_arr)) {
                  foreach ($edu_arr as $key => $val) {
@@ -1453,8 +1481,8 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
 
         // Add Extra Data placeholders
         for ($i = 1; $i <= 4; $i++) {
-            $val = isset(sanitize_text_field($_POST['extra_data_' . $i . '_val'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['extra_data_' . $i . '_val']))) : '';
-            $label = isset(sanitize_text_field($_POST['extra_data_' . $i . '_label'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['extra_data_' . $i . '_label']))) : '';
+            $val = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['extra_data_' . $i . '_val'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['extra_data_' . $i . '_val']))))) : '';
+            $label = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['extra_data_' . $i . '_label'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['extra_data_' . $i . '_label']))))) : '';
             
             $args[] = ['Key' => "ExtraData{$i}Label", 'Value' => $label];
             $args[] = ['Key' => "ExtraData{$i}Val", 'Value' => $val];
@@ -1613,8 +1641,8 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
     public function ajax_public_get_interview_questions() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $job_id = isset(sanitize_text_field($_POST['job_id'])) ? intval(sanitize_text_field($_POST['job_id'])) : 0;
-        $app_id = isset(sanitize_text_field($_POST['application_id'])) ? intval(sanitize_text_field($_POST['application_id'])) : 0;
+        $job_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) : 0;
+        $app_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['application_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['application_id'])))) : 0;
         
         if ($app_id <= 0) {
             wp_send_json_error(['message' => 'Invalid Application ID']);
@@ -1686,10 +1714,10 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
     public function ajax_public_save_interview_answer() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $app_id = isset(sanitize_text_field($_POST['application_id'])) ? intval(sanitize_text_field($_POST['application_id'])) : 0;
-        $question_id = isset(sanitize_text_field($_POST['question_id'])) ? intval(sanitize_text_field($_POST['question_id'])) : 0;
-        $question_type = isset(sanitize_text_field($_POST['question_type'])) ? intval(sanitize_text_field($_POST['question_type'])) : 0;
-        $answer = isset(sanitize_text_field($_POST['answer'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['answer']))) : '';
+        $app_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['application_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['application_id'])))) : 0;
+        $question_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['question_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['question_id'])))) : 0;
+        $question_type = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['question_type'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['question_type'])))) : 0;
+        $answer = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['answer'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['answer']))))) : '';
         
         if ($app_id <= 0 || $question_id <= 0) {
             wp_send_json_error(['message' => 'Invalid Parameters']);
@@ -1739,7 +1767,7 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
     public function ajax_public_send_mail() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $app_id = isset(sanitize_text_field($_POST['application_id'])) ? intval(sanitize_text_field($_POST['application_id'])) : 0;
+        $app_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['application_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['application_id'])))) : 0;
         
         if ($app_id <= 0) {
             wp_send_json_error(['message' => 'Invalid Application ID']);
@@ -1841,7 +1869,7 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
             wp_send_json_error(['message' => 'No file uploaded']);
         }
 
-        $job_id = isset(sanitize_text_field($_POST['job_id'])) ? intval(sanitize_text_field($_POST['job_id'])) : 0;
+        $job_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) : 0;
 
         require_once ABSPATH . 'wp-admin/includes/image.php';
         require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -2012,7 +2040,7 @@ add_rewrite_rule('^share/([a-zA-Z0-9-]+)/?$', 'index.php?xenhire_share=1&share_k
      */
     public function ajax_public_get_share_data() {
         check_ajax_referer('xenhire_nonce', 'nonce');
-        $share_key = isset(sanitize_text_field($_POST['share_key'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['share_key']))) : '';
+        $share_key = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['share_key'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['share_key']))))) : '';
         
         if (empty($share_key)) {
             wp_send_json_error(['message' => 'Missing Share Key']);
@@ -2141,7 +2169,7 @@ if (class_exists('XenHire_API')) {
     public function ajax_public_get_candidate_profile() {
         check_ajax_referer('xenhire_nonce', 'nonce');
 
-        $job_id = isset(sanitize_text_field($_POST['job_id'])) ? intval(sanitize_text_field($_POST['job_id'])) : 0;
+        $job_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) : 0;
         $candidate_id = isset($_COOKIE['xenhire_candidate_id']) ? intval($_COOKIE['xenhire_candidate_id']) : 0;
         $api_key = XenHire_Auth::get_api_key();
 

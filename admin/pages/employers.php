@@ -1,3 +1,4 @@
+if (!current_user_can('manage_options')) { wp_die('Unauthorized'); }
 <?php if (!defined('ABSPATH')) exit; 
 // Check if any employer exists to limit to single employer
 $xenhire_employer_check = XenHire_API::call('List_Employer', array(

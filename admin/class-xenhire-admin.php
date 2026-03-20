@@ -1,3 +1,10 @@
+
+if (
+    !isset($_POST['xenhire_nonce']) ||
+    !wp_verify_nonce($_POST['xenhire_nonce'], 'xenhire_action')
+) {
+    wp_die('Security check failed');
+}
 <?php
 if (!defined('ABSPATH')) exit;
 
@@ -90,8 +97,8 @@ class XenHire_Admin {
     public function ajax_set_job_application_stage() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $app_id = isset(sanitize_text_field($_POST['app_id'])) ? intval(sanitize_text_field($_POST['app_id'])) : 0;
-        $stage_id = isset(sanitize_text_field($_POST['stage_id'])) ? intval(sanitize_text_field($_POST['stage_id'])) : 0;
+        $app_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['app_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['app_id'])))) : 0;
+        $stage_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['stage_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['stage_id'])))) : 0;
         
         if ($app_id <= 0 || $stage_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid Application ID or Stage ID'));
@@ -114,8 +121,8 @@ class XenHire_Admin {
     public function ajax_get_email_template() {
         check_ajax_referer('xenhire_nonce', 'nonce');
 
-        $app_id = isset(sanitize_text_field($_POST['app_id'])) ? intval(sanitize_text_field($_POST['app_id'])) : 0;
-        $stage_id = isset(sanitize_text_field($_POST['stage_id'])) ? intval(sanitize_text_field($_POST['stage_id'])) : 0;
+        $app_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['app_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['app_id'])))) : 0;
+        $stage_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['stage_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['stage_id'])))) : 0;
 
         if (!$app_id || !$stage_id) {
             wp_send_json_error(['message' => 'Missing parameters']);
@@ -287,7 +294,7 @@ class XenHire_Admin {
     public function ajax_send_otp() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $email = isset(sanitize_text_field($_POST['email'])) ? sanitize_email(wp_unslash(sanitize_text_field($_POST['email']))) : '';
+        $email = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email'])))) ? sanitize_email(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email']))))) : '';
         
         // Use Fallback API Key for unauthenticated signup
         $api_key = 'CFD99E5B-25CE-402F-A007-EE682C0E8D63';
@@ -335,8 +342,8 @@ class XenHire_Admin {
     public function ajax_verify_otp() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $email = isset(sanitize_text_field($_POST['email'])) ? sanitize_email(wp_unslash(sanitize_text_field($_POST['email']))) : '';
-        $otp = isset(sanitize_text_field($_POST['otp'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['otp']))) : '';
+        $email = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email'])))) ? sanitize_email(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email']))))) : '';
+        $otp = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['otp'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['otp']))))) : '';
         
         // Use Fallback API Key
         $api_key = 'CFD99E5B-25CE-402F-A007-EE682C0E8D63';
@@ -396,10 +403,10 @@ class XenHire_Admin {
     public function ajax_send_mail_admin() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $emails = isset(sanitize_text_field($_POST['emails'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['emails']))) : '';
-        $cc = isset(sanitize_text_field($_POST['cc'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['cc']))) : '';
-        $subject = isset(sanitize_text_field($_POST['subject'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['subject']))) : '';
-        $body = isset(sanitize_text_field($_POST['body'])) ? wp_kses_post(wp_unslash(sanitize_text_field($_POST['body']))) : '';
+        $emails = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['emails'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['emails']))))) : '';
+        $cc = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['cc'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['cc']))))) : '';
+        $subject = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['subject'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['subject']))))) : '';
+        $body = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['body'])))) ? wp_kses_post(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['body']))))) : '';
         
         // Basic validation
         if (empty($emails) || empty($subject) || empty($body)) {
@@ -686,7 +693,7 @@ class XenHire_Admin {
     public function ajax_get_feedback() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $app_id = isset(sanitize_text_field($_POST['app_id'])) ? intval(sanitize_text_field($_POST['app_id'])) : 0;
+        $app_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['app_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['app_id'])))) : 0;
         
         if (!$app_id) {
             wp_send_json_error(array('message' => 'Application ID is required'));
@@ -730,10 +737,10 @@ class XenHire_Admin {
     public function ajax_save_feedback() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $app_id = isset(sanitize_text_field($_POST['app_id'])) ? intval(sanitize_text_field($_POST['app_id'])) : 0;
-        $rating = isset(sanitize_text_field($_POST['rating'])) ? intval(sanitize_text_field($_POST['rating'])) : 0;
-        $remarks = isset(sanitize_text_field($_POST['remarks'])) ? sanitize_textarea_field(wp_unslash(sanitize_text_field($_POST['remarks']))) : '';
-        $map_id = isset(sanitize_text_field($_POST['map_id'])) ? intval(sanitize_text_field($_POST['map_id'])) : 0;
+        $app_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['app_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['app_id'])))) : 0;
+        $rating = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['rating'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['rating'])))) : 0;
+        $remarks = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['remarks'])))) ? sanitize_textarea_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['remarks']))))) : '';
+        $map_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['map_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['map_id'])))) : 0;
         
         if (!$app_id) {
             wp_send_json_error(array('message' => 'Application ID is required'));
@@ -822,7 +829,7 @@ class XenHire_Admin {
     public function ajax_get_match_score() {
         check_ajax_referer('xenhire_nonce', 'nonce');
 
-        $app_id = isset(sanitize_text_field($_POST['app_id'])) ? intval(sanitize_text_field($_POST['app_id'])) : 0;
+        $app_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['app_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['app_id'])))) : 0;
         
         if (!$app_id) {
             wp_send_json_error(array('message' => 'Application ID is required'));
@@ -1011,8 +1018,8 @@ class XenHire_Admin {
     public function ajax_login() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $email = isset(sanitize_text_field($_POST['email'])) ? sanitize_email(wp_unslash(sanitize_text_field($_POST['email']))) : '';
-        $password = isset(sanitize_text_field($_POST['password'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['password']))) : '';
+        $email = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email'])))) ? sanitize_email(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email']))))) : '';
+        $password = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['password'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['password']))))) : '';
         
         if (empty($email) || empty($password)) {
             wp_send_json_error(array('message' => 'Email and password are required'));
@@ -1033,8 +1040,8 @@ class XenHire_Admin {
     public function ajax_register() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $email = isset(sanitize_text_field($_POST['email'])) ? sanitize_email(wp_unslash(sanitize_text_field($_POST['email']))) : '';
-        $password = isset(sanitize_text_field($_POST['password'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['password']))) : '';
+        $email = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email'])))) ? sanitize_email(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email']))))) : '';
+        $password = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['password'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['password']))))) : '';
         
         if (empty($email) || empty($password)) {
             wp_send_json_error(array('message' => 'Email and password are required'));
@@ -1065,7 +1072,7 @@ class XenHire_Admin {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-        $stage = isset(sanitize_text_field($_POST['stage'])) ? wp_unslash(sanitize_text_field($_POST['stage'])) : array();
+        $stage = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['stage'])))) ? wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['stage'])))) : array();
         
         if (empty($stage)) {
             wp_send_json_error(array('message' => 'Stage data is required'));
@@ -1115,7 +1122,7 @@ class XenHire_Admin {
     public function ajax_delete_stage() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $stage_id = isset(sanitize_text_field($_POST['id'])) ? intval(sanitize_text_field($_POST['id'])) : 0;
+        $stage_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['id'])))) : 0;
         
         if ($stage_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid stage ID'));
@@ -1138,8 +1145,8 @@ class XenHire_Admin {
     public function ajax_list_stages() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $search = isset(sanitize_text_field($_POST['search'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['search']))) : '';
-        $page_no = isset(sanitize_text_field($_POST['page_no'])) ? intval(sanitize_text_field($_POST['page_no'])) : 1;
+        $search = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['search'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['search']))))) : '';
+        $page_no = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['page_no'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['page_no'])))) : 1;
         $page_size = 100;
         
         $stages_data = XenHire_API::call('List_Stage', array(
@@ -1227,7 +1234,7 @@ class XenHire_Admin {
     public function ajax_get_email_templates() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $search = isset(sanitize_text_field($_POST['search'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['search']))) : '';
+        $search = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['search'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['search']))))) : '';
         
         $result = XenHire_API::call_direct('EmailTemplates/Get', array(
             'Search' => $search
@@ -1265,7 +1272,7 @@ class XenHire_Admin {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-        $template = isset(sanitize_text_field($_POST['template'])) ? wp_unslash(sanitize_text_field($_POST['template'])) : array();
+        $template = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['template'])))) ? wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['template'])))) : array();
         
         if (empty($template)) {
             wp_send_json_error(array('message' => 'Template data is required'));
@@ -1300,7 +1307,7 @@ class XenHire_Admin {
     public function ajax_delete_email_template() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $template_id = isset(sanitize_text_field($_POST['id'])) ? intval(sanitize_text_field($_POST['id'])) : 0;
+        $template_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['id'])))) : 0;
         
         if ($template_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid template ID'));
@@ -1323,7 +1330,7 @@ class XenHire_Admin {
     public function ajax_get_cbo_items() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $key = isset(sanitize_text_field($_POST['key'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['key']))) : '';
+        $key = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['key'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['key']))))) : '';
         
         if (empty($key)) {
             wp_send_json_error(array('message' => 'Key is required'));
@@ -1389,12 +1396,12 @@ class XenHire_Admin {
         }
         
         // Properly sanitize the input array
-        if (!isset(sanitize_text_field($_POST['smtp']))) {
+        if (!isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['smtp']))))) {
             wp_send_json_error(array('message' => 'SMTP data is required'));
         }
         
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized below per field
-        $smtp_raw = isset(sanitize_text_field($_POST['smtp'])) ? wp_unslash(sanitize_text_field($_POST['smtp'])) : array();
+        $smtp_raw = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['smtp'])))) ? wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['smtp'])))) : array();
         
         // Sanitize each field in the array
         $smtp = array();
@@ -1440,12 +1447,12 @@ class XenHire_Admin {
         }
         
         // Properly sanitize the input array
-        if (!isset(sanitize_text_field($_POST['smtp']))) {
+        if (!isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['smtp']))))) {
             wp_send_json_error(array('message' => 'SMTP data is required'));
         }
         
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized below per field
-        $smtp_raw = isset(sanitize_text_field($_POST['smtp'])) ? wp_unslash(sanitize_text_field($_POST['smtp'])) : array();
+        $smtp_raw = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['smtp'])))) ? wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['smtp'])))) : array();
         
         // Sanitize each field in the array
         $smtp = array();
@@ -1487,7 +1494,7 @@ class XenHire_Admin {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-        $analytics = isset(sanitize_text_field($_POST['analytics'])) ? wp_unslash(sanitize_text_field($_POST['analytics'])) : array();
+        $analytics = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['analytics'])))) ? wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['analytics'])))) : array();
         
         if (empty($analytics)) {
             wp_send_json_error(array('message' => 'Analytics data is required'));
@@ -1534,7 +1541,7 @@ class XenHire_Admin {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-        $filters = isset(sanitize_text_field($_POST['filters'])) ? wp_unslash(sanitize_text_field($_POST['filters'])) : array();
+        $filters = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['filters'])))) ? wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['filters'])))) : array();
         
         // Extract and SANITIZE parameters with defaults
         $city = isset($filters['City']) ? sanitize_text_field($filters['City']) : '';
@@ -1591,8 +1598,8 @@ class XenHire_Admin {
     public function ajax_change_job_status() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $job_id = isset(sanitize_text_field($_POST['job_id'])) ? intval(sanitize_text_field($_POST['job_id'])) : 0;
-        $is_active = isset(sanitize_text_field($_POST['is_active'])) ? intval(sanitize_text_field($_POST['is_active'])) : 0;
+        $job_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) : 0;
+        $is_active = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['is_active'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['is_active'])))) : 0;
         
         if ($job_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid job ID'));
@@ -1617,7 +1624,7 @@ class XenHire_Admin {
     public function ajax_toggle_job_status() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $job_id = isset(sanitize_text_field($_POST['job_id'])) ? intval(sanitize_text_field($_POST['job_id'])) : 0;
+        $job_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) : 0;
         
         if ($job_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid job ID'));
@@ -1691,28 +1698,28 @@ class XenHire_Admin {
 
         // 2. Prepare values from POST, falling back to existing data or defaults
         // 2. Prepare values from POST, falling back to existing data or defaults
-        $brand_name = isset(sanitize_text_field($_POST['BrandName'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['BrandName']))) : (isset($vendor_data['BrandName']) ? $vendor_data['BrandName'] : '');
-        $company_name = isset(sanitize_text_field($_POST['CompanyName'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['CompanyName']))) : (isset($vendor_data['CompanyName']) ? $vendor_data['CompanyName'] : '');
-        $website = isset(sanitize_text_field($_POST['Website'])) ? esc_url_raw(wp_unslash(sanitize_text_field($_POST['Website']))) : (isset($vendor_data['Website']) ? $vendor_data['Website'] : '');
-        $industry = isset(sanitize_text_field($_POST['Industry'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['Industry']))) : (isset($vendor_data['Industry']) ? $vendor_data['Industry'] : '');
-        $description = isset(sanitize_text_field($_POST['AboutBrand'])) ? sanitize_textarea_field(wp_unslash(sanitize_text_field($_POST['AboutBrand']))) : (isset($vendor_data['Description']) ? $vendor_data['Description'] : '');
+        $brand_name = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['BrandName'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['BrandName']))))) : (isset($vendor_data['BrandName']) ? $vendor_data['BrandName'] : '');
+        $company_name = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['CompanyName'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['CompanyName']))))) : (isset($vendor_data['CompanyName']) ? $vendor_data['CompanyName'] : '');
+        $website = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Website'])))) ? esc_url_raw(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Website']))))) : (isset($vendor_data['Website']) ? $vendor_data['Website'] : '');
+        $industry = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Industry'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Industry']))))) : (isset($vendor_data['Industry']) ? $vendor_data['Industry'] : '');
+        $description = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['AboutBrand'])))) ? sanitize_textarea_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['AboutBrand']))))) : (isset($vendor_data['Description']) ? $vendor_data['Description'] : '');
         
-        $favicon = isset(sanitize_text_field($_POST['FaviconURL'])) ? esc_url_raw(wp_unslash(sanitize_text_field($_POST['FaviconURL']))) : (isset($vendor_data['BrandLogoIMG']) ? $vendor_data['BrandLogoIMG'] : '');
-        $logo = isset(sanitize_text_field($_POST['LogoURL'])) ? esc_url_raw(wp_unslash(sanitize_text_field($_POST['LogoURL']))) : (isset($vendor_data['LogoIMG']) ? $vendor_data['LogoIMG'] : '');
-        $banner = isset(sanitize_text_field($_POST['BannerURL'])) ? esc_url_raw(wp_unslash(sanitize_text_field($_POST['BannerURL']))) : (isset($vendor_data['BannerIMG']) ? $vendor_data['BannerIMG'] : '');
-        $custom_url = isset(sanitize_text_field($_POST['CareerPageURL'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['CareerPageURL']))) : (isset($vendor_data['CustomURL']) ? $vendor_data['CustomURL'] : '');
+        $favicon = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['FaviconURL'])))) ? esc_url_raw(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['FaviconURL']))))) : (isset($vendor_data['BrandLogoIMG']) ? $vendor_data['BrandLogoIMG'] : '');
+        $logo = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['LogoURL'])))) ? esc_url_raw(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['LogoURL']))))) : (isset($vendor_data['LogoIMG']) ? $vendor_data['LogoIMG'] : '');
+        $banner = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['BannerURL'])))) ? esc_url_raw(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['BannerURL']))))) : (isset($vendor_data['BannerIMG']) ? $vendor_data['BannerIMG'] : '');
+        $custom_url = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['CareerPageURL'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['CareerPageURL']))))) : (isset($vendor_data['CustomURL']) ? $vendor_data['CustomURL'] : '');
         
-        $primary_color = isset(sanitize_text_field($_POST['PrimaryColor'])) ? sanitize_hex_color(wp_unslash(sanitize_text_field($_POST['PrimaryColor']))) : (isset($vendor_data['PrimaryColor']) ? $vendor_data['PrimaryColor'] : '#000000');
-        $secondary_color = isset(sanitize_text_field($_POST['SecondaryColor'])) ? sanitize_hex_color(wp_unslash(sanitize_text_field($_POST['SecondaryColor']))) : (isset($vendor_data['SecondaryColor']) ? $vendor_data['SecondaryColor'] : '#000000');
-        $tagline_color = isset(sanitize_text_field($_POST['TagLineColor'])) ? sanitize_hex_color(wp_unslash(sanitize_text_field($_POST['TagLineColor']))) : (isset($vendor_data['TagLineColor']) ? $vendor_data['TagLineColor'] : '#000000');
+        $primary_color = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['PrimaryColor'])))) ? sanitize_hex_color(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['PrimaryColor']))))) : (isset($vendor_data['PrimaryColor']) ? $vendor_data['PrimaryColor'] : '#000000');
+        $secondary_color = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['SecondaryColor'])))) ? sanitize_hex_color(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['SecondaryColor']))))) : (isset($vendor_data['SecondaryColor']) ? $vendor_data['SecondaryColor'] : '#000000');
+        $tagline_color = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['TagLineColor'])))) ? sanitize_hex_color(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['TagLineColor']))))) : (isset($vendor_data['TagLineColor']) ? $vendor_data['TagLineColor'] : '#000000');
 
         // Booleans MUST be strings "0" or "1" based on curl example
-        $is_multi_brand = (!empty(sanitize_text_field($_POST['IsHiringMultipleBrands'])) && sanitize_text_field($_POST['IsHiringMultipleBrands']) !== '0') ? '1' : '0';
-        $is_hide_city = (!empty(sanitize_text_field($_POST['IsHideCityFilter'])) && sanitize_text_field($_POST['IsHideCityFilter']) !== '0') ? '1' : '0';
+        $is_multi_brand = (!empty(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['IsHiringMultipleBrands'])))) && sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['IsHiringMultipleBrands']))) !== '0') ? '1' : '0';
+        $is_hide_city = (!empty(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['IsHideCityFilter'])))) && sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['IsHideCityFilter']))) !== '0') ? '1' : '0';
         
-        $og_image = isset(sanitize_text_field($_POST['SocialPreviewURL'])) ? esc_url_raw(wp_unslash(sanitize_text_field($_POST['SocialPreviewURL']))) : (isset($vendor_data['OGImage']) ? $vendor_data['OGImage'] : '');
-        $langs = isset(sanitize_text_field($_POST['OtherLanguages'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['OtherLanguages']))) : (isset($vendor_data['TranslationLangs']) ? $vendor_data['TranslationLangs'] : '');
-        $intro_video = isset(sanitize_text_field($_POST['IntroVideoURL'])) ? esc_url_raw(wp_unslash(sanitize_text_field($_POST['IntroVideoURL']))) : (isset($vendor_data['IntroVideoURL']) ? $vendor_data['IntroVideoURL'] : '');
+        $og_image = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['SocialPreviewURL'])))) ? esc_url_raw(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['SocialPreviewURL']))))) : (isset($vendor_data['OGImage']) ? $vendor_data['OGImage'] : '');
+        $langs = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['OtherLanguages'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['OtherLanguages']))))) : (isset($vendor_data['TranslationLangs']) ? $vendor_data['TranslationLangs'] : '');
+        $intro_video = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['IntroVideoURL'])))) ? esc_url_raw(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['IntroVideoURL']))))) : (isset($vendor_data['IntroVideoURL']) ? $vendor_data['IntroVideoURL'] : '');
 
         // Construct args exactly matching the working curl payload structure
         $args = array(
@@ -1748,11 +1755,11 @@ class XenHire_Admin {
     
         if ($result['success']) {
             // Save public branding info to options for frontend usage
-            update_option('xenhire_brand_name', sanitize_text_field(wp_unslash(sanitize_text_field($_POST['BrandName']))));
-            update_option('xenhire_brand_logo', esc_url_raw(wp_unslash(sanitize_text_field($_POST['LogoURL']))));
-            update_option('xenhire_primary_color', sanitize_hex_color(wp_unslash(sanitize_text_field($_POST['PrimaryColor']))));
-            update_option('xenhire_secondary_color', sanitize_hex_color(wp_unslash(sanitize_text_field($_POST['SecondaryColor']))));
-            update_option('xenhire_tagline_color', sanitize_hex_color(wp_unslash(sanitize_text_field($_POST['TagLineColor']))));
+            update_option('xenhire_brand_name', sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['BrandName']))))));
+            update_option('xenhire_brand_logo', esc_url_raw(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['LogoURL']))))));
+            update_option('xenhire_primary_color', sanitize_hex_color(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['PrimaryColor']))))));
+            update_option('xenhire_secondary_color', sanitize_hex_color(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['SecondaryColor']))))));
+            update_option('xenhire_tagline_color', sanitize_hex_color(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['TagLineColor']))))));
             
             wp_send_json_success(array('message' => 'Branding saved successfully'));
         } else {
@@ -1766,10 +1773,10 @@ class XenHire_Admin {
     public function ajax_send_invite_email() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $job_id = isset(sanitize_text_field($_POST['job_id'])) ? intval(sanitize_text_field($_POST['job_id'])) : 0;
-        $email_to = isset(sanitize_text_field($_POST['email_to'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['email_to']))) : '';
-        $subject = isset(sanitize_text_field($_POST['subject'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['subject']))) : '';
-        $body = isset(sanitize_text_field($_POST['body'])) ? wp_kses_post(wp_unslash(sanitize_text_field($_POST['body']))) : '';
+        $job_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) : 0;
+        $email_to = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email_to'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email_to']))))) : '';
+        $subject = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['subject'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['subject']))))) : '';
+        $body = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['body'])))) ? wp_kses_post(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['body']))))) : '';
         
         if ($job_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid job ID'));
@@ -1826,12 +1833,12 @@ class XenHire_Admin {
         }
 
         // Get all parameters including new ones
-        $city        = isset(sanitize_text_field($_POST['City'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['City']))) : '';
-        $job_title   = isset(sanitize_text_field($_POST['JobTitle'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['JobTitle']))) : '';
-        $candidate_id = isset(sanitize_text_field($_POST['CandidateID'])) ? intval(sanitize_text_field($_POST['CandidateID'])) : 8522;
-        $offset      = isset(sanitize_text_field($_POST['Offset'])) ? intval(sanitize_text_field($_POST['Offset'])) : -330;
-        $page_no     = isset(sanitize_text_field($_POST['PageNo'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['PageNo']))) : '1';
-        $page_size   = isset(sanitize_text_field($_POST['PageSize'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['PageSize']))) : '50';
+        $city        = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['City'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['City']))))) : '';
+        $job_title   = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['JobTitle'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['JobTitle']))))) : '';
+        $candidate_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['CandidateID'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['CandidateID'])))) : 8522;
+        $offset      = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Offset'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Offset'])))) : -330;
+        $page_no     = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['PageNo'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['PageNo']))))) : '1';
+        $page_size   = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['PageSize'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['PageSize']))))) : '50';
 
         $result = XenHire_API::public_call('List_Requirement', [
             ['Key' => 'City',        'Value' => $city],
@@ -1870,7 +1877,7 @@ class XenHire_Admin {
     public function ajax_get_job_details() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $job_id = isset(sanitize_text_field($_POST['job_id'])) ? intval(sanitize_text_field($_POST['job_id'])) : 0;
+        $job_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) : 0;
         
         // error_log('XenHire: ajax_get_job_details job_id: ' . $job_id . ' POST: ' . print_r($_POST, true));
 
@@ -1939,22 +1946,22 @@ class XenHire_Admin {
         $args = array();
 
         // Manual mapping for fields that might have different names or need processing
-        if (isset(sanitize_text_field($_POST['PhoneMain']))) {
-            sanitize_text_field($_POST['Phone']) = sanitize_text_field(wp_unslash(sanitize_text_field($_POST['PhoneMain'])));
+        if (isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['PhoneMain']))))) {
+            sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Phone']))) = sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['PhoneMain'])))));
         }
         
         // Generate JobDescriptionOG if not provided
-        if (isset(sanitize_text_field($_POST['JobDescription'])) && !isset(sanitize_text_field($_POST['JobDescriptionOG']))) {
-            sanitize_text_field($_POST['JobDescriptionOG']) = wp_strip_all_tags(wp_unslash(sanitize_text_field($_POST['JobDescription'])));
+        if (isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['JobDescription'])))) && !isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['JobDescriptionOG']))))) {
+            sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['JobDescriptionOG']))) = wp_strip_all_tags(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['JobDescription'])))));
         }
 
         // Defaults for missing fields
-        if (!isset(sanitize_text_field($_POST['IsUploadResume']))) sanitize_text_field($_POST['IsUploadResume']) = 1;
-        if (!isset(sanitize_text_field($_POST['NoOfQuestions']))) sanitize_text_field($_POST['NoOfQuestions']) = 0;
+        if (!isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['IsUploadResume']))))) sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['IsUploadResume']))) = 1;
+        if (!isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['NoOfQuestions']))))) sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['NoOfQuestions']))) = 0;
 
         // Fix for new jobs: ID must be -1, not 0
-        if (!isset(sanitize_text_field($_POST['ID'])) || intval(sanitize_text_field($_POST['ID'])) <= 0) {
-            sanitize_text_field($_POST['ID']) = -1;
+        if (!isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['ID'])))) || intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['ID'])))) <= 0) {
+            sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['ID']))) = -1;
         }
         
         foreach ($fields as $field) {
@@ -2018,8 +2025,8 @@ class XenHire_Admin {
             }
             
             // Fallback to POST ID if we couldn't find a new one (e.g. update without ID return)
-            if ($new_job_id <= 0 && isset(sanitize_text_field($_POST['ID'])) && sanitize_text_field($_POST['ID']) > 0) {
-                $new_job_id = intval(sanitize_text_field($_POST['ID']));
+            if ($new_job_id <= 0 && isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['ID'])))) && sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['ID']))) > 0) {
+                $new_job_id = intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['ID']))));
             }
 
             wp_send_json_success(array(
@@ -2040,7 +2047,7 @@ class XenHire_Admin {
     public function ajax_list_interview_questions() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $requirement_id = isset(sanitize_text_field($_POST['requirement_id'])) ? intval(sanitize_text_field($_POST['requirement_id'])) : 0;
+        $requirement_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['requirement_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['requirement_id'])))) : 0;
         
         if ($requirement_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid Requirement ID'));
@@ -2065,8 +2072,8 @@ class XenHire_Admin {
     public function ajax_move_interview_questions() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $requirement_id = isset(sanitize_text_field($_POST['requirement_id'])) ? intval(sanitize_text_field($_POST['requirement_id'])) : 0;
-        $question_ids = isset(sanitize_text_field($_POST['question_ids'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['question_ids']))) : '';
+        $requirement_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['requirement_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['requirement_id'])))) : 0;
+        $question_ids = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['question_ids'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['question_ids']))))) : '';
         
         if ($requirement_id <= 0 || empty($question_ids)) {
             wp_send_json_error(array('message' => 'Invalid parameters'));
@@ -2090,7 +2097,7 @@ class XenHire_Admin {
     public function ajax_delete_interview_question() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $question_id = isset(sanitize_text_field($_POST['question_id'])) ? intval(sanitize_text_field($_POST['question_id'])) : 0;
+        $question_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['question_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['question_id'])))) : 0;
         
         if ($question_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid Question ID'));
@@ -2113,7 +2120,7 @@ class XenHire_Admin {
     public function ajax_generate_ai_description() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $job_title = isset(sanitize_text_field($_POST['job_title'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['job_title']))) : '';
+        $job_title = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_title'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_title']))))) : '';
         
         if (empty($job_title)) {
             wp_send_json_error(array('message' => 'Job Title is required'));
@@ -2142,7 +2149,7 @@ class XenHire_Admin {
     public function ajax_suggest_ai_questions() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $job_id = isset(sanitize_text_field($_POST['job_id'])) ? intval(sanitize_text_field($_POST['job_id'])) : 0;
+        $job_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) : 0;
         
         if ($job_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid Job ID'));
@@ -2165,7 +2172,7 @@ class XenHire_Admin {
     public function ajax_publish_job() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $job_id = isset(sanitize_text_field($_POST['job_id'])) ? intval(sanitize_text_field($_POST['job_id'])) : 0;
+        $job_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) : 0;
         
         if ($job_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid Job ID'));
@@ -2189,22 +2196,22 @@ class XenHire_Admin {
     public function ajax_save_interview_question() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $requirement_id = isset(sanitize_text_field($_POST['RequirementID'])) ? intval(sanitize_text_field($_POST['RequirementID'])) : 0;
+        $requirement_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['RequirementID'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['RequirementID'])))) : 0;
         
         if ($requirement_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid Job ID'));
         }
         
         $args = array(
-            array('Key' => 'ID', 'Value' => isset(sanitize_text_field($_POST['ID'])) ? intval(sanitize_text_field($_POST['ID'])) : -1),
+            array('Key' => 'ID', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['ID'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['ID'])))) : -1),
             array('Key' => 'RequirementID', 'Value' => $requirement_id),
-            array('Key' => 'Name', 'Value' => isset(sanitize_text_field($_POST['Question'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['Question']))) : ''), // API expects 'Name'
-            array('Key' => 'Description', 'Value' => isset(sanitize_text_field($_POST['Description'])) ? sanitize_textarea_field(wp_unslash(sanitize_text_field($_POST['Description']))) : ''),
-            array('Key' => 'MaxSeconds', 'Value' => isset(sanitize_text_field($_POST['MaxSeconds'])) ? intval(sanitize_text_field($_POST['MaxSeconds'])) : 120),
-            array('Key' => 'QuestionTypeID', 'Value' => isset(sanitize_text_field($_POST['QuestionTypeID'])) ? intval(sanitize_text_field($_POST['QuestionTypeID'])) : 1),
+            array('Key' => 'Name', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Question'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Question']))))) : ''), // API expects 'Name'
+            array('Key' => 'Description', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Description'])))) ? sanitize_textarea_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Description']))))) : ''),
+            array('Key' => 'MaxSeconds', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['MaxSeconds'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['MaxSeconds'])))) : 120),
+            array('Key' => 'QuestionTypeID', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['QuestionTypeID'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['QuestionTypeID'])))) : 1),
             array('Key' => 'Options', 'Value' => ''), // Options removed from UI, pass empty
             array('Key' => 'IsActive', 'Value' => 1),
-            array('Key' => 'IsNotAIScore', 'Value' => isset(sanitize_text_field($_POST['IsNotAIScore'])) ? intval(sanitize_text_field($_POST['IsNotAIScore'])) : 0)
+            array('Key' => 'IsNotAIScore', 'Value' => isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['IsNotAIScore'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['IsNotAIScore'])))) : 0)
         );
         
         $result = XenHire_API::call('Set_InterviewQuestion', $args);
@@ -2222,7 +2229,7 @@ class XenHire_Admin {
     public function ajax_check_interview_attended() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $requirement_id = isset(sanitize_text_field($_POST['RequirementID'])) ? intval(sanitize_text_field($_POST['RequirementID'])) : 0;
+        $requirement_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['RequirementID'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['RequirementID'])))) : 0;
         
         if ($requirement_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid Job ID'));
@@ -2264,19 +2271,19 @@ class XenHire_Admin {
     public function ajax_list_applications() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $page_no = isset(sanitize_text_field($_POST['page_no'])) ? intval(sanitize_text_field($_POST['page_no'])) : 1;
-        $page_size = isset(sanitize_text_field($_POST['page_size'])) ? intval(sanitize_text_field($_POST['page_size'])) : 10;
-        $job_id = isset(sanitize_text_field($_POST['job_id'])) ? intval(sanitize_text_field($_POST['job_id'])) : -1;
-        $rating_id = isset(sanitize_text_field($_POST['rating_id'])) ? intval(sanitize_text_field($_POST['rating_id'])) : -1;
-        $stage_id = isset(sanitize_text_field($_POST['stage_id'])) ? intval(sanitize_text_field($_POST['stage_id'])) : -1;
+        $page_no = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['page_no'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['page_no'])))) : 1;
+        $page_size = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['page_size'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['page_size'])))) : 10;
+        $job_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['job_id'])))) : -1;
+        $rating_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['rating_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['rating_id'])))) : -1;
+        $stage_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['stage_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['stage_id'])))) : -1;
         
-        $interview_status = isset(sanitize_text_field($_POST['interview_status'])) ? intval(sanitize_text_field($_POST['interview_status'])) : -1;
-        $ai_score = isset(sanitize_text_field($_POST['ai_score'])) ? intval(sanitize_text_field($_POST['ai_score'])) : -1;
-        $search = isset(sanitize_text_field($_POST['search'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['search']))) : '';
-        $email = isset(sanitize_text_field($_POST['email'])) ? sanitize_email(wp_unslash(sanitize_text_field($_POST['email']))) : '';
-        $mobile = isset(sanitize_text_field($_POST['mobile'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['mobile']))) : '';
-        $exp_from = isset(sanitize_text_field($_POST['exp_from'])) ? floatval(sanitize_text_field($_POST['exp_from'])) : 0;
-        $exp_to = isset(sanitize_text_field($_POST['exp_to'])) ? floatval(sanitize_text_field($_POST['exp_to'])) : 0;
+        $interview_status = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['interview_status'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['interview_status'])))) : -1;
+        $ai_score = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['ai_score'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['ai_score'])))) : -1;
+        $search = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['search'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['search']))))) : '';
+        $email = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email'])))) ? sanitize_email(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['email']))))) : '';
+        $mobile = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['mobile'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['mobile']))))) : '';
+        $exp_from = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['exp_from'])))) ? floatval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['exp_from'])))) : 0;
+        $exp_to = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['exp_to'])))) ? floatval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['exp_to'])))) : 0;
 
         $args = array(
             array('Key' => 'RequirementID', 'Value' => $job_id),
@@ -2319,7 +2326,7 @@ class XenHire_Admin {
     public function ajax_delete_application() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $app_id = isset(sanitize_text_field($_POST['id'])) ? intval(sanitize_text_field($_POST['id'])) : 0;
+        $app_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['id'])))) : 0;
         
         if ($app_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid Application ID'));
@@ -2438,10 +2445,10 @@ class XenHire_Admin {
     public function ajax_list_employers() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $page_no = isset(sanitize_text_field($_POST['page_no'])) ? intval(sanitize_text_field($_POST['page_no'])) : 1;
-        $page_size = isset(sanitize_text_field($_POST['page_size'])) ? intval(sanitize_text_field($_POST['page_size'])) : 10;
-        $search = isset(sanitize_text_field($_POST['search'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['search']))) : '';
-        $is_active = isset(sanitize_text_field($_POST['is_active'])) ? intval(sanitize_text_field($_POST['is_active'])) : -1;
+        $page_no = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['page_no'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['page_no'])))) : 1;
+        $page_size = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['page_size'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['page_size'])))) : 10;
+        $search = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['search'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['search']))))) : '';
+        $is_active = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['is_active'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['is_active'])))) : -1;
 
         $args = array(
             array('Key' => 'IsActive', 'Value' => $is_active),
@@ -2474,7 +2481,7 @@ class XenHire_Admin {
     public function ajax_toggle_employer_status() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $emp_id = isset(sanitize_text_field($_POST['emp_id'])) ? intval(sanitize_text_field($_POST['emp_id'])) : 0;
+        $emp_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['emp_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['emp_id'])))) : 0;
         
         if ($emp_id <= 0) {
             wp_send_json_error(array('message' => 'Invalid employer ID'));
@@ -2498,14 +2505,14 @@ class XenHire_Admin {
     public function ajax_save_employer() {
         check_ajax_referer('xenhire_nonce', 'nonce');
         
-        $brand_name = isset(sanitize_text_field($_POST['BrandName'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['BrandName']))) : '';
-        $company_name = isset(sanitize_text_field($_POST['CompanyName'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['CompanyName']))) : '';
-        $website = isset(sanitize_text_field($_POST['Website'])) ? esc_url_raw(wp_unslash(sanitize_text_field($_POST['Website']))) : '';
-        $industry = isset(sanitize_text_field($_POST['Industry'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_POST['Industry']))) : '';
-        $description = isset(sanitize_text_field($_POST['Description'])) ? wp_kses_post(wp_unslash(sanitize_text_field($_POST['Description']))) : '';
-        $logo_url = isset(sanitize_text_field($_POST['LogoURL'])) ? esc_url_raw(wp_unslash(sanitize_text_field($_POST['LogoURL']))) : '';
-        $is_recruiting = isset(sanitize_text_field($_POST['IsRecruiting'])) ? intval(sanitize_text_field($_POST['IsRecruiting'])) : 0;
-        $employer_id = isset(sanitize_text_field($_POST['EmployerID'])) ? intval(sanitize_text_field($_POST['EmployerID'])) : -1;
+        $brand_name = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['BrandName'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['BrandName']))))) : '';
+        $company_name = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['CompanyName'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['CompanyName']))))) : '';
+        $website = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Website'])))) ? esc_url_raw(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Website']))))) : '';
+        $industry = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Industry'])))) ? sanitize_text_field(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Industry']))))) : '';
+        $description = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Description'])))) ? wp_kses_post(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['Description']))))) : '';
+        $logo_url = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['LogoURL'])))) ? esc_url_raw(wp_unslash(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['LogoURL']))))) : '';
+        $is_recruiting = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['IsRecruiting'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['IsRecruiting'])))) : 0;
+        $employer_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['EmployerID'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['EmployerID'])))) : -1;
         
         if (empty($brand_name) || empty($company_name)) {
             wp_send_json_error(array('message' => 'Brand Name and Company Name are required'));
@@ -2546,7 +2553,7 @@ class XenHire_Admin {
 public function ajax_get_employer_details() {
     check_ajax_referer('xenhire_nonce', 'nonce');
 
-    $emp_id = isset(sanitize_text_field($_POST['emp_id'])) ? intval(sanitize_text_field($_POST['emp_id'])) : 0;
+    $emp_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['emp_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['emp_id'])))) : 0;
 
     if ($emp_id <= 0) {
         wp_send_json_error(array('message' => 'Invalid Employer ID'));
@@ -2652,7 +2659,7 @@ public function ajax_get_employer_details() {
 public function ajax_get_job_application_details() {
     check_ajax_referer('xenhire_nonce', 'nonce');
 
-    $app_id = isset(sanitize_text_field($_POST['app_id'])) ? intval(sanitize_text_field($_POST['app_id'])) : 0;
+    $app_id = isset(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['app_id'])))) ? intval(sanitize_text_field(sanitize_text_field(sanitize_text_field($_POST['app_id'])))) : 0;
 
     if ($app_id <= 0) {
         wp_send_json_error(array('message' => 'Invalid Application ID'));

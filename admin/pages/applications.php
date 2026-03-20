@@ -1,3 +1,4 @@
+if (!current_user_can('manage_options')) { wp_die('Unauthorized'); }
 <?php if (!defined('ABSPATH')) exit; ?>
 
 <div class="wrap xh-app-wrap1 xenhire-common">

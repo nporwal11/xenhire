@@ -1,3 +1,23 @@
+
+$jid = isset($_GET['jid']) ? absint($_GET['jid']) : 0;
+
+if (
+    !isset($_GET['_wpnonce']) ||
+    !wp_verify_nonce($_GET['_wpnonce'], 'xenhire_view')
+) {
+    wp_die('Invalid request');
+}
+
+if (!is_user_logged_in()) {
+    wp_die('Login required');
+}
+
+$post = get_post($jid);
+
+if (!$post || $post->post_author != get_current_user_id()) {
+    wp_die('Unauthorized access');
+}
+
 <?php if (!defined('ABSPATH')) exit; ?>
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -19,7 +39,7 @@ if (
     wp_die('Invalid request');
 }
 
-$xenhire_app_id = isset(sanitize_text_field($_GET['jid'])) ? absint(sanitize_text_field($_GET['jid'])) : 0;
+$xenhire_app_id = isset(sanitize_text_field(absint($_GET['jid']))) ? absint(sanitize_text_field(absint($_GET['jid']))) : 0;
 
 
 $xenhire_brand_name = get_option('xenhire_brand_name', 'XenHire');
