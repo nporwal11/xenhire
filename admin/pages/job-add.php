@@ -2,7 +2,7 @@
 if (!defined('ABSPATH')) exit;
 
 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-$xenhire_job_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$xenhire_job_id = isset(sanitize_text_field($_GET['id'])) ? intval(sanitize_text_field($_GET['id'])) : 0;
 $xenhire_is_new = ($xenhire_job_id <= 0);
 ?>
 <div class="wrap xenhire-job-add-page xenhire-common">

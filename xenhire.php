@@ -1,3 +1,4 @@
+<?php if (!defined('ABSPATH')) exit; ?>
 <?php
 /**
  * Plugin Name: XenHire
@@ -108,7 +109,7 @@ function xenhire_activation_redirect() {
     delete_option( 'xenhire_activation_redirect' );
 
     // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-    if ( isset( $_GET['activate-multi'] ) ) {
+    if ( isset( sanitize_text_field($_GET['activate-multi']) ) ) {
         return;
     }
 

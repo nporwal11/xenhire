@@ -1,3 +1,4 @@
+<?php if (!defined('ABSPATH')) exit; ?>
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -12,13 +13,13 @@ $xenhire_job_id = get_query_var('job_id');
 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 if (
-    !isset($_GET['_wpnonce']) ||
-    !wp_verify_nonce($_GET['_wpnonce'], 'xenhire_view_app')
+    !isset(sanitize_text_field($_GET['_wpnonce'])) ||
+    !wp_verify_nonce(sanitize_text_field($_GET['_wpnonce']), 'xenhire_view_app')
 ) {
     wp_die('Invalid request');
 }
 
-$xenhire_app_id = isset($_GET['jid']) ? absint($_GET['jid']) : 0;
+$xenhire_app_id = isset(sanitize_text_field($_GET['jid'])) ? absint(sanitize_text_field($_GET['jid'])) : 0;
 
 
 $xenhire_brand_name = get_option('xenhire_brand_name', 'XenHire');

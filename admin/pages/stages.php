@@ -4,10 +4,10 @@ if (!defined('ABSPATH')) exit;
 // Pagination parameters
 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-$xenhire_page_no = isset($_GET['paged']) ? intval($_GET['paged']) : 1;
+$xenhire_page_no = isset(sanitize_text_field($_GET['paged'])) ? intval(sanitize_text_field($_GET['paged'])) : 1;
 $xenhire_page_size = 100;
 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-$search = isset($_GET['s']) ? sanitize_text_field(wp_unslash($_GET['s'])) : '';
+$search = isset(sanitize_text_field($_GET['s'])) ? sanitize_text_field(wp_unslash(sanitize_text_field($_GET['s']))) : '';
 
 // Fetch stages data from API
 $xenhire_stages_data = XenHire_API::call('List_Stage', array(

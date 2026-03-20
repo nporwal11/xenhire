@@ -123,8 +123,8 @@ class XenHire_Auth {
     public function ajax_login() {
         check_ajax_referer('xenhire_nonce', 'nonce');
 
-        $email = sanitize_email(wp_unslash($_POST['email'] ?? ''));
-        $password = sanitize_text_field(wp_unslash($_POST['password'] ?? ''));
+        $email = sanitize_email(wp_unslash(sanitize_text_field($_POST['email']) ?? ''));
+        $password = sanitize_text_field(wp_unslash(sanitize_text_field($_POST['password']) ?? ''));
 
         $result = self::login($email, $password);
         $result['success'] ? wp_send_json_success($result) : wp_send_json_error($result);
@@ -133,8 +133,8 @@ class XenHire_Auth {
     public function ajax_register() {
         check_ajax_referer('xenhire_nonce', 'nonce');
 
-        $email = sanitize_email(wp_unslash($_POST['email'] ?? ''));
-        $password = sanitize_text_field(wp_unslash($_POST['password'] ?? ''));
+        $email = sanitize_email(wp_unslash(sanitize_text_field($_POST['email']) ?? ''));
+        $password = sanitize_text_field(wp_unslash(sanitize_text_field($_POST['password']) ?? ''));
 
         $result = self::register($email, $password);
         $result['success'] ? wp_send_json_success($result) : wp_send_json_error($result);

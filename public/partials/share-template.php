@@ -1,3 +1,4 @@
+<?php if (!defined('ABSPATH')) exit; ?>
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -6,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 $xenhire_share_key = get_query_var('share_key');
 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-if (empty($xenhire_share_key) && isset($_GET['key'])) {
+if (empty($xenhire_share_key) && isset(sanitize_text_field($_GET['key']))) {
     // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-    $xenhire_share_key = sanitize_text_field(wp_unslash($_GET['key']));
+    $xenhire_share_key = sanitize_text_field(wp_unslash(sanitize_text_field($_GET['key'])));
 }
 $xenhire_brand_name = get_option('xenhire_brand_name', 'XenHire'); // Or "JoyBrand22" as per screenshot?
 // Actually screenshot says "JoyBrand22". I'll use that as a placeholder if brand name is default.
