@@ -1,0 +1,443 @@
+/* ============================================
+   ANALYTICS FORM STYLING
+   ============================================ */
+
+/* Analytics Card Container */
+.xenhire-analytics-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Card Body with Padding */
+.xenhire-analytics-card-body {
+    padding: 50px 60px;
+}
+
+/* Form Container */
+.xenhire-analytics-form {
+    width: 100%;
+}
+
+/* Form Row - Grid Layout (Label | Input) */
+.xenhire-analytics-row {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 35px;
+}
+
+/* Label Styling */
+.xenhire-analytics-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #1f2937;
+    margin: 0;
+    text-align: left;
+}
+
+/* Input Wrapper */
+.xenhire-analytics-input-wrapper {
+    width: 100%;
+}
+
+/* Input Field Styling */
+.xenhire-analytics-input {
+    width: 100%;
+    padding: 14px 18px;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #6b7280;
+    transition: all 0.2s ease;
+}
+
+/* Input Placeholder */
+.xenhire-analytics-input::placeholder {
+    color: #9ca3af;
+}
+
+/* Input Focus State */
+.xenhire-analytics-input:focus {
+    outline: none;
+    background: #ffffff;
+    border-color: #3b82f6;
+    color: #1f2937;
+}
+
+/* Input Hover State */
+.xenhire-analytics-input:hover {
+    border-color: #d1d5db;
+}
+
+/* Form Actions (Save Button Container) */
+.xenhire-analytics-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Save Button */
+.xenhire-analytics-btn-save {
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Save Button Hover */
+.xenhire-analytics-btn-save:hover {
+    background: #2563eb;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Save Button Active */
+.xenhire-analytics-btn-save:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Save Button Focus */
+.xenhire-analytics-btn-save:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Save Button Loading State */
+.xenhire-analytics-btn-save[data-kt-indicator="on"] {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Loading Indicator */
+.xenhire-analytics-btn-save .indicator-progress {
+    display: none;
+}
+
+.xenhire-analytics-btn-save[data-kt-indicator="on"] .indicator-label {
+    display: none;
+}
+
+.xenhire-analytics-btn-save[data-kt-indicator="on"] .indicator-progress {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* embed css here */
+/* Reset any conflicting styles */
+.analytics-container * {
+    box-sizing: border-box;
+}
+
+/* Container */
+.analytics-container {
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+/* Card */
+.analytics-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 30px 40px 30px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Form */
+.analytics-form {
+    width: 100%;
+}
+
+/* Field Container */
+.analytics-field {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 24px;
+}
+
+/* Label */
+.analytics-label {
+    font-weight: 500;
+    line-height: 1.5;
+    color: #252f4a;
+    font-size: 1.075rem;
+}
+
+/* Input */
+.analytics-field .analytics-input {
+    background-color: #f9f9f9;
+    color: #4b5675;
+    min-height: calc(1.5em + 1.65rem + 2px);
+    padding: .825rem 1.5rem;
+    border-radius: .625rem;
+    font-weight: 500;
+    line-height: 1;
+    border: 1px solid #f1f1f4;
+}
+
+
+.analytics-field .analytics-input::placeholder {
+    color: #99a1b7;
+}
+
+.analytics-field .analytics-input:focus {
+    background-color: #f1f1f4;
+    border-color: #f1f1f4;
+    color: #4b5675;
+    outline: 0;
+    box-shadow: none;
+}
+
+/* Actions */
+.analytics-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #f1f1f4;
+}
+
+
+.xenhire-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.xenhire-email-templates-page {
+    padding: 20px;
+}
+
+div.xenhire-card {
+    margin-top: 0px;
+}
+
+div.xenhire-card-body {
+    padding: 0px;
+}
+
+.xenhire-stages-page {
+    padding: 20px;
+}
+
+.xenhire-back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.xenhire-back-btn:hover {
+    background: #667eea;
+    border-color: #667eea;
+    color: #fff;
+}
+
+.xenhire-back-btn .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.xenhire-page-header h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 28px;
+    color: #1a1a1a;
+}
+
+/* Save Button */
+.analytics-save-btn {
+    color: #ffffff;
+    padding: calc(.775rem + 1px) calc(1.5rem + 1px);
+    background-color: #1b84ff;
+    box-shadow: none;
+    border: 0;
+    border-radius: 0.475rem;
+    line-height: 1.5;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.analytics-save-btn:hover {
+    color: #fff;
+    background-color: #056ee9;
+}
+
+.analytics-save-btn[data-kt-indicator="on"] {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* ============================================
+   SWEETALERT2 Z-INDEX FIX
+   ============================================ */
+.swal2-container {
+    z-index: 999999 !important;
+}
+
+.swal2-popup {
+    z-index: 999999 !important;
+}
+
+/* ============================================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================================ */
+
+/* Better focus visibility */
+.xenhire-analytics-input:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Disabled state (if needed) */
+.xenhire-analytics-input:disabled {
+    background: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* Error state (optional - for validation) */
+.xenhire-analytics-input.error {
+    border-color: #ef4444;
+    background: #fef2f2;
+}
+
+.xenhire-analytics-input.error:focus {
+    border-color: #dc2626;
+}
+
+/* Success state (optional - after save) */
+.xenhire-analytics-input.success {
+    border-color: #10b981;
+}
+
+/* SweetAlert Fix */
+.swal2-container {
+    z-index: 999999 !important;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet and Mobile */
+@media (max-width: 782px) {
+    .xenhire-analytics-card-body {
+        padding: 30px 25px;
+    }
+
+    .xenhire-analytics-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 25px;
+    }
+
+    .xenhire-analytics-label {
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .xenhire-analytics-input {
+        padding: 12px 16px;
+    }
+
+    .xenhire-analytics-actions {
+        padding-top: 20px;
+        margin-top: 30px;
+    }
+
+    .xenhire-analytics-btn-save {
+        width: 100%;
+        padding: 14px 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .analytics-card {
+        padding: 40px 30px;
+    }
+
+    .analytics-field {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 30px;
+    }
+
+    .analytics-actions {
+        margin-top: 30px;
+        padding-top: 30px;
+    }
+
+    .analytics-save-btn {
+        width: 100%;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .xenhire-analytics-card-body {
+        padding: 20px 15px;
+    }
+
+    .xenhire-analytics-row {
+        margin-bottom: 20px;
+    }
+
+    .xenhire-analytics-label {
+        font-size: 14px;
+    }
+
+    .xenhire-analytics-input {
+        font-size: 13px;
+        padding: 10px 14px;
+    }
+
+    .analytics-card {
+        padding: 30px 20px;
+    }
+
+    .analytics-label {
+        font-size: 15px;
+    }
+
+    .analytics-input {
+        padding: 14px 18px;
+        font-size: 14px;
+    }
+}
+
+@media print {
+    .xenhire-analytics-btn-save {
+        display: none;
+    }
+
+    .xenhire-analytics-card {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+}

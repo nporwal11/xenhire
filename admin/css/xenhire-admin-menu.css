@@ -1,0 +1,28 @@
+/**
+ * XenHire Admin Menu Styling
+ * Handles proper formatting of the plugin menu icon in WordPress admin sidebar
+ */
+
+/* Admin menu icon styling */
+#toplevel_page_xenhire .wp-menu-image img {
+    padding: 0 !important;
+    max-height: 16px !important;
+    opacity: 1 !important;
+    margin-top: 9px !important;
+}
+
+/* Ensure proper display when menu item is active */
+#toplevel_page_xenhire.wp-has-submenu .wp-menu-image img {
+    padding: 0 !important;
+    margin-top: 9px !important;
+}
+
+/* Hover state */
+#toplevel_page_xenhire:hover .wp-menu-image img {
+    opacity: 1 !important;
+}
+
+/* Active/current page state */
+#toplevel_page_xenhire.current .wp-menu-image img {
+    opacity: 1 !important;
+}

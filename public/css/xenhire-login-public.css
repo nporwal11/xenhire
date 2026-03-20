@@ -1,0 +1,112 @@
+        body {
+            color: #071437;
+            font-size: 13px;
+        }
+        
+        .xh-candidate-login-wrapper {
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            font-family: 'Satoshi', 'Inter', sans-serif !important;
+            background: #fff;
+            min-height: 84vh;
+            align-items: center;
+            background-repeat: no-repeat; 
+            background-size: cover;
+            background-position: center;
+            font-size:13px;
+        }
+        .xh-candidate-card {
+            background: #fff;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 9px 16px 0 rgba(0, 106, 194, .1) !important;
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin:2.5rem;
+        }
+        .xh-candidate-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .xh-candidate-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #071437;
+            margin: 0;
+            /* font-family: inherit; */
+        }
+        .xh-brand {
+            font-size: 17.5px;
+            font-weight: 600;
+            color: #071437;
+            /* font-family: inherit; */
+        }
+        
+        .xh-form-group { margin-bottom: 24px; }
+        .xh-form-group label { 
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #252f4a;
+            margin-bottom: 8px;
+            /* font-family: inherit; */
+        }
+        .xh-input { 
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            font-size: 14px;
+            color: #252f4a;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+            background: #fff;
+            font-weight: 500;
+            font-family: inherit;
+        }
+        .xh-input::placeholder { color: #9ca3af; }
+        .xh-input:focus { border-color: var(--xh-primary); }
+        .xh-input[readonly] { background-color: #f9fafb; color: #6b7280; }
+
+            .xh-btn { display: inline-flex; justify-content: center; align-items: center; padding: 14px 24px; border: none; border-radius: 12px; font-size: 16px; font-weight: 500; cursor: pointer; transition: background-color 0.2s; text-decoration: none; }
+            .xh-btn-block { width: 100%; }
+            .xh-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+            .xh-resend-wrapper { text-align: right; margin-bottom: 30px; display: flex; justify-content: flex-end; }
+            .xh-btn-resend { background-color: var(--xh-primary); color: #fff; border: none; padding: 8px 16px; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 500; }
+            .xh-btn-resend:hover { background-color: var(--xh-secondary); }
+            .xh-resend-text { font-size: 12px; color: var(--xh-primary); font-weight: 600; margin-top: -15px; }
+            #xh-btn-get-otp,
+            #xh-btn-verify {
+                font-family: 'Satoshi', 'Inter', sans-serif !important;
+                background: linear-gradient(to right, var(--xh-primary) 0%, var(--xh-secondary) 100%) !important;
+                color: #fff;
+                font-size:14px;
+                font-weight:500;
+                border-radius:16px;
+            }
+            .xh-candidate-left {
+                padding: 2.5rem;
+                text-align: center;
+            }
+            .xh-candidate-left img {
+                max-width: 300px;
+                margin-bottom: 5rem;
+            }
+            .xh-candidate-left h2 {
+                margin-bottom: 1.5rem;
+                margin-top:0;
+                line-height: 1.2;
+                color: #071437;
+                font-size: 1.8rem;
+                /* font-size: 2.25rem; */
+                font-weight: 600;
+            }
+            .xh-candidate-left p {
+                width: 500px;
+                text-align: center;
+                margin: 0 auto;
+                font-weight: 500;
+                font-size: .87rem;
+                line-height: 1.5;
+            }
+            .xhj-btn-remove-item:focus { outline: none; box-shadow:none; }

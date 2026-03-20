@@ -1,0 +1,225 @@
+:root {
+  --primary: #4f6cf7;
+  --secondary: #00c2ff;
+  --bg: #f5f7fb;
+  --text-dark: #1f2a44;
+  --text-light: #6b7280;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  /* font-family: "Segoe UI", system-ui, sans-serif; */
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-dark);
+}
+
+/* xh-splash-container */
+.xh-splash-container {
+     /* max-width: 1280px; */
+     max-width: 1320px;
+    margin: auto;
+    padding: 60px 20px;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Header */
+.xh-splash-container .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 40px; 
+  justify-content: center;
+}
+
+/* Hero */
+.xh-splash-container .hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+/* Left Content */
+.xh-splash-container .hero h1 {
+  font-size: 42px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.xh-splash-container .hero h1 span{font-size:28px;}
+
+.xh-splash-container .features {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  margin-top: 40px;
+  width:1280px;
+}
+
+.xh-splash-container .feature {
+  /* background: #fff;
+  padding: 14px 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05); */
+  position:relative;
+}
+
+.xh-splash-container .feature span {
+  /* width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 16px; */
+  font-size: 15px;
+  color:#071437;
+  position: absolute;
+  left: 52px;
+  top: 15px;
+}
+
+.xh-splash-container .desc {
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+/* Button */
+.xh-splash-container .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #1b84ff;
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.xh-splash-container .btn:hover {
+  background: #056ee9;
+  transition: all 0.3s ease;
+}
+.xh-splash-container .btn:focus {
+  outline: none;
+  box-shadow:none;
+}
+
+/* Right Image */
+.xh-splash-container .hero-image {
+  position: relative;
+}
+
+.xh-splash-container .hero-image img {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+ .xh-splash-container .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+ .xh-splash-container .features {
+    grid-template-columns: 1fr;
+  }
+
+.xh-splash-container  .btn {
+    margin: auto;
+  }
+}
+
+/* Existing styles... appending new ones or modifying */
+
+/* Add this to your main CSS or existing style block */
+.xh-splash-container .hero-image {
+  position: relative;
+  overflow: hidden; /* Ensure video doesn't spill out if rounded corners diff */
+  border-radius: 16px; /* Match video border radius */
+  cursor: pointer;
+}
+
+.xh-splash-container .hero-image img {
+  position: relative;
+  z-index: 2;
+  transition: opacity 0.8s ease-in-out; /* "Slightly" gone implies slow/smooth */
+  display: block; /* Remove bottom space */
+}
+
+/* Base video style defined here for cleaner CSS if preferred, but JS sets some inline */
+.xh-splash-container .hero-image iframe {
+  /* JS sets opacity: 0 and transition initially */
+}
+
+.xh-splash-container .hero-image.video-active img {
+  opacity: 0;
+  pointer-events: none; /* Let clicks pass through to video controls */
+}
+
+/* Video Play Icon */
+.xh-splash-container .video-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background-color: #f8f5ff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  box-shadow: 0 4px 15px rgba(27, 132, 255, 0.4);
+  animation: pulse-blue 2s infinite;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.xh-splash-container .video-play-icon svg {
+  width: 32px;
+  height: 32px;
+  fill: #7239ea;
+  margin-left: 4px;
+}
+
+.xh-splash-container .video-play-icon:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  background-color: #f8f5ff;
+}
+
+@keyframes pulse-blue {
+  0% {
+    box-shadow: 0 0 0 0 rgba(114, 57, 234, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(114, 57, 234, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(114, 57, 234, 0);
+  }
+}
+
+.xh-splash-container .hero-image.video-active .video-play-icon {
+  opacity: 0;
+  pointer-events: none;
+}

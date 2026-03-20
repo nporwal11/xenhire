@@ -1,0 +1,566 @@
+/* Employers Page CSS */
+.xh-search-box {
+    position: relative;
+    width: 300px;
+}
+
+.xh-search-box input {
+    width: 100%;
+    padding: 10px 10px 10px 36px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #f9fafb;
+}
+
+.xh-search-box .dashicons {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+}
+
+.xh-emp-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* List Header */
+.xh-list-header {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 2fr 1.5fr 1fr 1fr 1fr;
+    border-bottom: 1px dashed #e5e7eb;
+    color: #99a1b7;
+    font-size: .95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    /* letter-spacing: 0.05em; */
+    padding: 1rem;
+}
+
+/* List Row */
+.xh-list-row {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 2fr 1.5fr 1fr 1fr 1fr;
+    align-items: center;
+    /* color: #1f2937; */
+    /* font-size: 1.075rem; */
+    padding: 1rem;
+    /* font-weight: 500; */
+    color: #071437;
+    font-size: 1.075rem;
+    font-weight: 500;
+}
+
+.xh-list-row:last-child {
+    border-bottom: none;
+}
+
+.employer-logo-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.employer-logo {
+    height: 40px;
+    object-fit: contain;
+    max-width: 150px;
+}
+
+/* Toggle Switch */
+.xh-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 15px;
+}
+
+.xh-form-group.row-layout {
+    justify-content: flex-start;
+}
+
+.xh-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.xh-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e5e7eb;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.xh-slider:before {
+    position: absolute;
+    content: "";
+    height: 11px;
+    width: 11px;
+    left: 3px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.xh-slider {
+    background-color: #2563eb;
+}
+
+input:checked+.xh-slider:before {
+    transform: translateX(14px);
+}
+
+/* Jobs Badge */
+.xh-jobs-badge {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: calc(.55rem + 1px) calc(1rem + 1px);
+    border-radius: .425rem;
+    font-size: .95rem;
+    font-weight: 500;
+    display: inline-block;
+    text-align: center;
+    min-width: 60px;
+}
+
+.xh-btn-filter .ki-filter {
+    padding-right: .35rem;
+    margin-right: .25rem;
+}
+
+/* Action Button */
+
+.xh-secondary {
+    color: #252f4a;
+    background-color: #f9f9f9;
+}
+
+.xh-secondary:hover {
+    color: #252f4a;
+    background-color: #dbdfe9;
+}
+
+.xh-btn {
+    border: 0;
+    font-weight: 500;
+    line-height: 1.5;
+    border-radius: 0.425rem;
+    font-size: 0.95rem;
+    /* padding: 0.55rem 1rem; */
+    padding: calc(.55rem + 1px) calc(1rem + 1px);
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Pagination */
+
+
+.xenhire-pagination-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.xenhire-container .xenhire-page-size {
+    color: #4b5675;
+    background-color: #f9f9f9;
+    border: 0;
+    width: 75px;
+    padding-top: .55rem;
+    padding-bottom: .55rem;
+    padding-left: .75rem;
+    font-size: .95rem;
+    border-radius: .425rem;
+    outline: none;
+    box-shadow: none;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.xenhire-pagination-info {
+    color: #99a1b7;
+}
+
+.xenhire-pagination-pages {
+    display: flex;
+    gap: 5px;
+}
+
+.xh-page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.xh-page-btn .dashicons {
+    margin-right: 0;
+    padding: 0;
+}
+
+.xh-page-btn {
+    background: #fff;
+    border: 1px solid #f1f1f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .475rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    font-weight: 500;
+    font-size: 1.075rem;
+    padding: 0;
+}
+
+.xh-page-btn:hover {
+    cursor: pointer;
+    color: #1b84ff;
+    background-color: #f9f9f9;
+}
+
+.xh-page-btn.active {
+    background: #1b84ff;
+    color: #fff;
+}
+
+/* Filter Dropdown */
+.xh-filter-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 300px;
+    background: #fff;
+    z-index: 50;
+    margin-top: 8px;
+    border: 1px solid #fff;
+    border-radius: .475rem;
+    box-shadow: rgba(82, 63, 105, 0.15) 0px 0px 50px 0px;
+}
+
+.xh-filter-header {
+    padding: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid #f3f4f6;
+    color: #111827;
+}
+
+.xh-filter-body {
+    padding: 16px;
+}
+
+.xh-filter-body label {
+    font-weight: 500;
+    line-height: 1.5;
+    color: #252f4a;
+    font-size: 1.075rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.xh-filter-dropdown .xh-filter-select {
+    width: 100%;
+    background-color: #f9f9f9;
+    color: #4b5675;
+    min-height: calc(1.5em + 1.65rem + 2px);
+    padding: .825rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: .625rem;
+    font-weight: 500;
+    line-height: 1;
+    border: 1px solid #f1f1f4;
+}
+
+.xh-filter-dropdown .xh-filter-select:focus {
+    background-color: #f1f1f4;
+    border-color: #f1f1f4;
+    color: #4b5675;
+    outline: 0;
+    box-shadow: none;
+}
+
+/* Modal Styles */
+.xh-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.xh-modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: 'Inter', sans-serif;
+}
+
+.xh-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #eee;
+}
+
+.xh-modal-header h2 {
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #071437;
+    font-size: 1.5rem;
+}
+
+.xh-close-modal {
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.xh-close-modal:hover,
+.xh-close-modal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.xh-modal-body {
+    padding: 24px;
+}
+
+.xh-form-group {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.xh-form-group label {
+    font-weight: 500;
+    line-height: 1.5;
+    color: #252f4a;
+    font-size: 1.075rem;
+    margin-bottom: 0.5rem;
+    flex: 0 0 auto;
+    width: 33.33333333%;
+}
+
+.xh-form-group label.xh-toggle-switch {
+    width: 30px;
+    height: 15px;
+}
+
+.xh-form-group input[type="text"],
+.xh-form-group input[type="url"] {
+    background-color: #f9f9f9;
+    color: #4b5675;
+    min-height: calc(1.5em + 1.65rem + 2px);
+    padding: .825rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: .625rem;
+    font-weight: 500;
+    line-height: 1;
+    border: 1px solid #f1f1f4;
+    flex: 0 0 auto;
+    width: 66.66666667%;
+}
+
+.xh-form-group input::placeholder {
+    color: #9CA3AF;
+}
+
+/* Upload Area */
+.xh-upload-area {
+    width: 100%;
+    height: 100px;
+    border-radius: .625rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #ffffff;
+    box-shadow: 0 0.5rem 1.5rem 0.5rem rgba(0, 0, 0, 0.075);
+}
+
+.xh-upload-btn .dashicons {
+    padding-right: 0;
+    margin-right: 0;
+}
+
+.xh-form-group .ck-reset.ck-editor {
+    width: 100%;
+}
+
+.xh-form-column {
+    flex-direction: column;
+    display: flex;
+    width: 400px;
+}
+
+.xh-form-column p {
+    margin-top: 1.25rem;
+    font-size: .95rem;
+    color: #99a1b7;
+    font-weight: 500;
+}
+
+.xh-preview {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.xh-preview img {
+    max-height: 100px;
+    max-width: 90%;
+}
+
+.xh-upload-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.xh-upload-btn:hover {
+    background-color: #f3f4f6;
+}
+
+/* Rich Text Editor */
+.xh-rich-text-toolbar {
+    border: 1px solid #E5E7EB;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    padding: 8px;
+    background-color: #fff;
+    display: flex;
+    gap: 8px;
+}
+
+.xh-format-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #6B7280;
+    font-family: serif;
+    font-size: 16px;
+}
+
+.xh-format-btn:hover {
+    background-color: #F3F4F6;
+    color: #111827;
+}
+
+.xh-rich-text-editor {
+    border: 1px solid #E5E7EB;
+    border-radius: 0 0 6px 6px;
+    padding: 12px;
+    min-height: 150px;
+    background-color: #F9FAFB;
+    font-size: 14px;
+    color: #111827;
+    outline: none;
+}
+
+.xh-rich-text-editor:empty:before {
+    content: attr(placeholder);
+    color: #9CA3AF;
+}
+
+/* Toggle Switch (Reuse existing but ensure alignment) */
+.xh-form-group.row-layout label {
+    margin-bottom: 0;
+}
+
+/* Footer */
+.xh-modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.xh-btn-secondary {
+    background-color: #F3F4F6;
+    color: #374151;
+    border: 1px solid #E5E7EB;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.xh-btn-secondary:hover {
+    background-color: #E5E7EB;
+}
+
+/* Re-declare primary button to ensure specificity if needed, or rely on existing */
+.required {
+    color: #EF4444;
+    margin-left: 2px;
+}
+
+.description {
+    font-size: 12px;
+    color: #9CA3AF;
+    margin-top: 4px;
+}
+
+/* Autocomplete Styles */
+.ui-autocomplete {
+    max-height: 160px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 10000 !important;
+}
+
+#xh-add-employer-form .ck-editor__editable_inline {
+    min-height: 200px;
+}
+
+.xenhire-search-clear-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+    text-decoration: none;
+}

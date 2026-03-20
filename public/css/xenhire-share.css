@@ -1,0 +1,9 @@
+:root {
+    --xh-primary: <?php echo esc_attr($xenhire_primary_color); ?>;
+    --xh-secondary: <?php echo esc_attr($xenhire_secondary_color); ?>;
+    --xh-bg: #f8f9fa;
+    --xh-text: #1f2937;
+    --xh-text-muted: #6b7280;
+    --xh-border: #e5e7eb;
+}
+

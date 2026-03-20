@@ -1,0 +1,700 @@
+/* ==================== XenHire Stages Page Styles ==================== */
+
+.xenhire-stages-page {
+    padding: 20px;
+}
+
+/* Page Header with Back Button */
+.xenhire-page-header {
+    background: white;
+    padding: 0px 30px;
+    height: 65px;
+    border-bottom: 1px solid #F1F1F4;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.5rem !important;
+}
+
+.xenhire-container {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.xh-card {
+    background: #fff;
+    border: 0;
+    border-radius: 0.625rem;
+    box-shadow: 0px 0px 20px 0px rgba(76, 87, 125, 0.02);
+}
+
+.xenhire-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.xenhire-email-templates-page {
+    padding: 20px;
+}
+
+div.xenhire-card {
+    margin-top: 0px;
+}
+
+div.xenhire-card-body {
+    padding: 0px;
+}
+
+.xenhire-back-btn {
+    border: 0;
+    background-color: #e9f3ff;
+    font-weight: 500;
+    border-radius: 0.425rem;
+    font-size: 0.95rem;
+    padding: 0.55rem 1rem;
+    line-height: 1.5;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 1.25rem;
+}
+
+.xenhire-back-btn:hover {
+    background-color: #1b84ff;
+}
+
+.xenhire-back-btn:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.xenhire-back-btn:hover i.ki-left,
+.xenhire-back-btn:hover span.ki-left {
+    color: #fff;
+}
+
+.xenhire-back-btn i.ki-left,
+.xenhire-back-btn span.ki-left {
+    margin: 0;
+    padding: 0;
+    color: #1b84ff;
+}
+
+.xenhire-page-header h1 {
+    color: #071437;
+    font-weight: 500;
+    font-size: 1.35rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+table.fixed {
+    border: 0;
+}
+
+.xenhire-header-right .button-primary {
+    background: #667eea;
+    border-color: #667eea;
+    padding: 8px 20px;
+    height: auto;
+    font-size: 15px;
+}
+
+.xenhire-header-right .button-primary:hover {
+    background: #5568d3;
+    border-color: #5568d3;
+}
+
+.xenhire-header-right .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+}
+
+
+/* Toolbar / Search Bar */
+.xenhire-toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2.25rem;
+    min-height: 70px;
+    align-items: center;
+}
+
+#kt_filter_search {
+    padding: 4px 35px 4px 30px;
+    border: 1px solid #f1f1f4;
+    background-color: #f9f9f9;
+    color: #4b5675;
+    font-size: .95rem;
+    border-radius: .425rem;
+    width: 150px;
+}
+
+#kt_filter_search:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+    background-color: #f1f1f4;
+}
+
+.xenhire-search-box {
+    position: relative;
+}
+
+.xenhire-search-box .ki-magnifier {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 6px 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: color 0.2s;
+}
+
+.xenhire-search-clear-btn {
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+    text-decoration: none;
+}
+
+.button.button-primary {
+    display: flex;
+    align-items: center;
+}
+
+/* Table Container */
+.xenhire-table-container {
+    padding: 2rem 2.25rem;
+    padding-top: 0;
+}
+
+.xenhire-table-container table {
+    box-shadow: none;
+}
+
+.xenhire-stages-table {
+    margin: 0;
+    border: none;
+}
+
+.xenhire-stages-table th {
+    color: #99a1b7 !important;
+    font-size: .95rem !important;
+    font-weight: 500;
+    border-bottom: 1px dashed #f1f1f4 !important;
+    text-transform: uppercase;
+    /* letter-spacing: 0.5px; */
+    padding: 12px 16px;
+    text-align: left;
+}
+
+.xenhire-stages-table td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-bottom: 1px dashed #f1f1f4;
+    color: #071437;
+    font-size: 1.075rem;
+    font-weight: 500;
+}
+
+.xenhire-stages-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Column Widths */
+.column-name {
+    width: 25%;
+    min-width: 200px;
+}
+
+.column-color {
+    width: 10%;
+    min-width: 80px;
+}
+
+.column-position {
+    width: 12%;
+    min-width: 100px;
+    text-align: center;
+}
+
+.column-template {
+    width: 35%;
+    min-width: 200px;
+}
+
+.column-actions {
+    width: 18%;
+    min-width: 150px;
+    text-align: right;
+}
+
+/* Color Box */
+.xenhire-color-box {
+    width: 50px;
+    height: 25px;
+    border-radius: 4px;
+    border: 0;
+    display: inline-block;
+}
+
+/* Action Buttons */
+.xenhire-stages-table .button {
+    margin-right: 5px;
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.xenhire-delete-stage {
+    color: #d32f2f;
+}
+
+.xenhire-delete-stage:hover {
+    color: #fff;
+    background: #d32f2f;
+    border-color: #d32f2f;
+}
+
+/* Modal */
+.xenhire-modal {
+    position: fixed;
+    z-index: 999999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.xenhire-modal-content {
+    background: #fff;
+    padding: 0;
+    border-radius: 8px;
+    max-width: 800px;
+    position: relative;
+}
+
+.xenhire-modal-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+}
+
+.xenhire-modal-close:hover {
+    color: #000;
+}
+
+/* Modal Styles */
+.xenhire-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999999;
+    display: none;
+}
+
+.xenhire-modal.show {
+    display: block !important;
+}
+
+.xenhire-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.xenhire-modal-dialog {
+    position: relative;
+    max-width: 800px;
+    margin: 50px auto;
+    z-index: 1000000;
+}
+
+.xenhire-modal-content {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: modalSlideIn 0.3s ease;
+}
+
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modal Header */
+.xenhire-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.xenhire-modal-header h2 {
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #071437;
+    font-size: 1.5rem;
+}
+
+.xenhire-modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+.xenhire-modal-close:hover {
+    color: #333;
+}
+
+.xenhire-modal-close .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+/* Modal Body */
+.xenhire-modal-body {
+    padding: 30px;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+/* Form Styles */
+.xenhire-form-row {
+    margin-bottom: 20px;
+}
+
+.xenhire-stage-form .xenhire-form-label {
+    font-weight: 500;
+    line-height: 1.5;
+    color: #252f4a;
+    font-size: 1.075rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+}
+
+.xenhire-stage-form .xenhire-form-label.required::after {
+    content: ' *';
+    color: #f8285a;
+}
+
+.xenhire-stage-form .xenhire-form-control {
+    flex: 0 0 auto;
+    width: 100%;
+    background-color: #f9f9f9;
+    color: #4b5675;
+    min-height: calc(1.5em + 1.65rem + 2px);
+    padding: .825rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: .625rem;
+    font-weight: 500;
+    line-height: 1;
+    border: 1px solid #f1f1f4;
+}
+
+.xenhire-stage-form .xenhire-form-control:focus {
+    background-color: #f1f1f4;
+    border-color: #f1f1f4;
+    color: #4b5675;
+    outline: 0;
+    box-shadow: none;
+}
+
+.xenhire-stage-form .xenhire-form-control.is-invalid {
+    border-color: #d32f2f;
+    background: #fff5f5;
+}
+
+.xenhire-color-control {
+    width: 25%;
+    height: 35px;
+    border-radius: .475rem;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.xenhire-color-control:focus,
+.xenhire-color-control:hover {
+    border: none;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Validation Feedback */
+.fv-feedback {
+    display: none;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.fv-feedback.fv-invalid {
+    display: block;
+    color: #d32f2f;
+}
+
+/* Modal Actions */
+.xenhire-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 35px;
+}
+
+button.button-primary.btn-confirm {
+    margin-left: 10px;
+}
+
+.xenhire-btn-cancel {
+    padding: 10px 20px;
+}
+
+.indicator-progress {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.indicator-progress .spinner {
+    float: none;
+    margin: 0;
+}
+
+body.xenhire-modal-open {
+    overflow: hidden;
+}
+
+
+.wp-core-ui select {
+    padding: 8px 10px;
+    max-width: 100%;
+}
+
+input#Color {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.xh-btn {
+    border: 0;
+    font-weight: 500;
+    line-height: 1.5;
+    border-radius: 0.425rem;
+    font-size: 0.95rem;
+    padding: calc(.55rem + 1px) calc(1rem + 1px);
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.xh-btn-large {
+    padding: 0.775rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.475rem;
+    line-height: 1.5;
+}
+
+.xh-secondary {
+    color: #252f4a;
+    background-color: #f9f9f9;
+}
+
+.xh-secondary:hover {
+    color: #252f4a;
+    background-color: #fcfcfc;
+}
+
+.xh-danger {
+    color: #f8285a;
+    background-color: #ffeef3;
+}
+
+.xh-danger:hover {
+    color: #ffffff;
+    background-color: #f8285a;
+}
+
+.xh-primary {
+    color: #ffffff;
+    background-color: #1b84ff;
+}
+
+.xh-primary:hover {
+    color: #fff;
+    background-color: #056ee9;
+}
+
+.column-actions.text-right {
+    text-align: right;
+}
+
+div.ck.ck-editor .ck-editor__top .ck-sticky-panel .ck-toolbar,
+div.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+    border-color: #f1f1f4;
+}
+
+div.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+    background-color: #f9f9f9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .xenhire-modal-dialog {
+        margin: 20px;
+        max-width: calc(100% - 40px);
+    }
+
+    .xenhire-color-control {
+        width: 100%;
+    }
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .xenhire-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .column-actions {
+        text-align: left;
+    }
+}
+/* Styles moved from stages.php */
+.xenhire-notification {
+    position: fixed;
+    top: 32px;
+    right: 20px;
+    padding: 15px 25px;
+    padding-left: 45px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 9999999;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 250px;
+}
+
+.xenhire-notification .dashicons {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.xenhire-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.xenhire-notification.success {
+    background: #10b981;
+    color: #fff;
+}
+
+.xenhire-notification.error {
+    background: #ef4444;
+    color: #fff;
+}
+
+#kt_modal_stage_submit[data-kt-indicator='on'] .indicator-label {
+    display: none;
+}
+
+#kt_modal_stage_submit[data-kt-indicator='on'] .indicator-progress {
+    display: inline-block !important;
+}
+
+.swal2-container {
+    z-index: 99999999 !important;
+}
+
+.swal2-backdrop-show {
+    z-index: 99999998 !important;
+}
+
+.swal2-styled.button {
+    padding: 10px 24px !important;
+    border-radius: 4px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    margin: 0 8px !important;
+    border: none !important;
+}
+
+.swal2-styled.button.button-primary {
+    background: #2271b1 !important;
+    color: #fff !important;
+}
+
+.swal2-styled.button.button-primary:hover {
+    background: #135e96 !important;
+}
+
+.swal2-styled.button:not(.button-primary) {
+    background: #dcdcde !important;
+    color: #2c3338 !important;
+}
+
+.swal2-styled.button:not(.button-primary):hover {
+    background: #c3c4c7 !important;
+}
+
+.swal2-popup {
+   
+}
+

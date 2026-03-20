@@ -1,0 +1,204 @@
+/* Packages Page Styles */
+.packages-header {
+    text-align: center;
+    padding: 1.25rem;
+    margin: 1rem auto;
+}
+
+.packages-header h2 {
+    font-weight: 600;
+    line-height: 1.2;
+    color: #071437;
+    margin: 0;
+    font-size: 1.75rem;
+}
+
+.packages-header p {
+    color: #99a1b7;
+    font-size: 1rem;
+    padding-top: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Billing Toggle */
+.billing-wrap {
+    display: inline-block;
+    border-top: 1px solid #f1f1f4;
+    margin-top: 1.25rem;
+    padding-top: 2rem;
+}
+
+.billing-toggle {
+    background: #f5f8fa;
+    padding: 2px;
+    border-radius: 0.425rem;
+}
+
+.billing-btn {
+    border: none;
+    background: transparent;
+    padding: 8px 24px;
+    color: #5e6278;
+    cursor: pointer;
+    border-radius: 0.425rem;
+    transition: all 0.3s ease;
+    font-size: 1.075rem;
+    font-weight: 500;
+}
+
+.billing-btn.active {
+    background: #1b84ff;
+    color: #fff;
+}
+
+/* Packages Grid */
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 720px;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+}
+
+.package-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2.25rem;
+    position: relative;
+    text-align: left;
+}
+
+.package-item.popular {
+    background: #f5f8fa;
+}
+
+.package-item-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.popular-badge {
+    font-size: 0.825rem;
+    color: #7e8299;
+    background: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid #e4e6ef;
+    font-weight: 500;
+}
+
+.package-badge {
+    display: inline-block;
+    background: #fff4de;
+    color: #ffa800;
+    font-size: 0.825rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    /* margin-bottom: 15px; */
+}
+
+.package-item.popular .package-badge {
+    margin-left: 5px;
+    /* Space for "Most popular" badge */
+}
+
+.package-item h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #181c32;
+    margin: 0 0 20px 0;
+}
+
+.package-price {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.package-price .currency {
+    font-size: 24px;
+    font-weight: 600;
+    color: #181c32;
+    margin-top: 5px;
+}
+
+.package-price .currency em {
+    font-style: normal;
+}
+
+.package-price .amount {
+    font-size: 40px;
+    font-weight: 700;
+    color: #181c32;
+    line-height: 1;
+}
+
+.package-price .period {
+    font-size: 13px;
+    color: #7e8299;
+    margin-left: 5px;
+    line-height: 1.2;
+    margin-top: 5px;
+}
+
+.xenhire-common .xh-btn-block {
+    width: 100%;
+    display: block;
+    margin-bottom: 30px;
+    padding: 0.775rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Features List */
+.package-features {
+    text-align: left;
+}
+
+.features-title {
+    font-size: 13px;
+    color: #5e6278;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.package-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.package-features li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #3f4254;
+}
+
+.package-features li .dashicons {
+    color: #50cd89;
+    /* Green checkmark */
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8fff3;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .packages-grid {
+        grid-template-columns: 1fr;
+    }
+}
