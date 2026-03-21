@@ -1,8 +1,0 @@
-{
-  "name": "xenhire",
-  "version": "1.3.0",
-  "scripts": {
-    "build": "echo Build step placeholder",
-    "dev": "echo Dev mode"
-  }
-}
